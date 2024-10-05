@@ -1,0 +1,72 @@
+
+<div class="container">
+  <!-- Navigation Bar -->
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink routerLink="/home" routerLinkActive="active">
+        <i class="bi bi-house"></i> Home
+      </button>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink routerLink="/home/contact" routerLinkActive="active">
+        <i class="bi bi-envelope"></i> Contact
+      </button>
+    </li>
+    <li [ngbNavItem]="3">
+      <button ngbNavLink routerLink="/home/about" routerLinkActive="active">
+        <i class="bi bi-info-circle"></i>
+        About
+      </button>
+    </li>
+    <div class="admin">
+      <li [ngbNavItem]="4">
+        <button ngbNavLink routerLink="/login" routerLinkActive="active">
+          <i class="bi bi-person-circle"></i>
+          Admin Sign-In
+        </button>
+      </li>
+    </div>
+
+  </ul>
+
+  <div *ngFor="let profile of profileDetails" class="sub-container" >
+    <div class="images">
+      <img [src]="profile.url" [alt]="profile.name"/>
+      <div>
+        <p class="profile-name">{{ profile.name }}</p>
+      </div>
+      <div>
+        <p  class="job-title"> {{ profile.jobTitle }} </p>
+      </div>
+
+
+    </div>
+    <div class="content">
+      <h2>About Me</h2>
+      <p class="about"> {{ profile.about }} </p>
+
+      <h3>Skills</h3>
+      <ul>
+        <li appIncreaseFontSize *ngFor="let skill of profile.skills"> {{ skill }} </li>
+
+      </ul>
+
+      <h3>Experience</h3>
+      <p class="experience"> {{ profile.experience }} </p>
+
+      <div *ngFor="let contact of contactDetails">
+        <h3>Contact</h3>
+      <p class="contact"> {{ contact.message }} </p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+

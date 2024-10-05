@@ -1,0 +1,103 @@
+<div class="container">
+
+
+  <!-- Navigation Bar -->
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink routerLink="/admin/admin-home"  routerLinkActive="active">
+        <i class="bi bi-house"></i> Home
+      </button>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink routerLink="/admin/contact"  routerLinkActive="active">
+        <i class="bi bi-envelope"></i> Contact
+      </button>
+    </li>
+
+    <div class="admin">
+      <li [ngbNavItem]="4">
+        <button ngbNavLink (click)="logout()" routerLinkActive="active">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </li>
+    </div>
+
+  </ul>
+
+  <div class="contact-form">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <!-- <p> {{ contactForm.valid }} </p> -->
+       <h2> {{ editMode ? 'Edit Contact' : 'Add Contact' }} </h2>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" type="text"  class="form-control" />
+        <span class="error-message" *ngIf="form['name'].invalid && form['name'].touched">
+          <span *ngIf="form['name'].errors?.['required']">Name is required</span>
+          <span *ngIf="form['name'].errors?.['minlength']">Name must be at least 5 characters long</span>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email"  class="form-control"/>
+        <span class="error-message" *ngIf="form['email'].invalid && form['email'].touched">
+          <span *ngIf="form['email'].errors?.['required']">Email is required</span>
+          <span *ngIf="form['email'].errors?.['pattern']">Please enter a valid email address</span>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input id="phone" formControlName="phone" type="text"  class="form-control"/>
+        <span class="error-message" *ngIf="form['phone'].invalid && form['phone'].touched">
+          <span *ngIf="form['phone'].errors?.['required']">Phone number is required</span>
+          <span *ngIf="form['phone'].errors?.['pattern']">Please enter a valid 10-digit phone number</span>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message"  class="form-control"></textarea>
+        <span class="error-message" *ngIf="form['message'].invalid && form['message'].touched">
+          <span *ngIf="form['message'].errors?.['required']">Message is required</span>
+          <span *ngIf="form['message'].errors?.['minlength']">Message must be at least 10 characters long</span>
+        </span>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="contactForm.invalid">
+        {{ editMode ? 'Update' : 'Add' }}
+      </button>
+      <button type="button" class="btn-cancel" *ngIf="editMode" (click)="onEditCancel()">Cancel</button>
+
+    </form>
+  </div>
+
+  <div class="contact-list">
+    <table class="table table-striped" *ngIf="contactDetails.length>0">
+      <thead>
+        <tr>
+         <th scope="col">No</th>
+         <th scope="col">Name</th>
+         <th scope="col">Edit</th>
+         <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+       @for (contact of contactDetails; track contact.name; let i = $index) {
+         <tr>
+           <th scope="row">{{ i + 1 }}</th>
+           <td>
+             {{ contact.name }}
+           </td>
+           <td><i class="bi bi-pencil-square" (click)="onEdit(contact)"></i></td>
+           <td><i class="bi bi-trash3" (click)="deleteContactDetails(contact.id)"></i></td>
+         </tr>
+       }
+      </tbody>
+       </table>
+  </div>
+
+
+</div>
+

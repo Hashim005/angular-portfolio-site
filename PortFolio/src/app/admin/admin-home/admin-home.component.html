@@ -1,0 +1,128 @@
+<div class="container">
+
+
+    <!-- Navigation Bar -->
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs">
+      <li [ngbNavItem]="1">
+        <button ngbNavLink routerLink="/admin/admin-home"  routerLinkActive="active">
+          <i class="bi bi-house"></i>
+           Home
+        </button>
+      </li>
+      <li [ngbNavItem]="2">
+        <button ngbNavLink routerLink="/admin/contact"  routerLinkActive="active">
+          <i class="bi bi-envelope"></i>
+          Contact
+        </button>
+      </li>
+      <div class="admin">
+        <li [ngbNavItem]="4">
+          <button ngbNavLink (click)="logout()" routerLinkActive="active">
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+          </button>
+        </li>
+      </div>
+
+    </ul>
+
+  <!-- <button mat-raised-button color="primary" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout</button> -->
+
+    <div class="port-form">
+      <h2> {{ editMode ? 'Edit PortFolio' : 'Add PortFolio'}} </h2>
+      <!-- check form valid {{ portFolioForm.valid }} -->
+      <form [formGroup]="portFolioForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" formControlName="name" type="text" class="form-control" />
+          <span class="error-message" *ngIf="form['name'].invalid && form['name'].touched ">
+            <span *ngIf="form['name'].errors?.['required']">name is required</span>
+            <span *ngIf="form['name'].errors?.['minlength']">minimum 10 letter</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="jobTitle">Job Title:</label>
+          <input id="jobTitle" formControlName="jobTitle" type="text"  class="form-control"/>
+          <span class="error-message" *ngIf="form['jobTitle'].invalid && form['jobTitle'].touched ">
+            <span *ngIf="form['jobTitle'].errors?.['required']">Name is required</span>
+            <span *ngIf="form['jobTitle'].errors?.['minlength']">User type minimum 20 letter</span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="about">About:</label>
+          <textarea id="about" formControlName="about" class="form-control"></textarea>
+          <span class="error-message" *ngIf="form['about'].invalid && form['about'].touched || form['about'].dirty">
+            <span *ngIf="form['about'].errors?.['required']">about is required</span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="experience">Experience:</label>
+          <input id="experience" formControlName="experience" type="text" class="form-control"/>
+          <span class="error-message" *ngIf="form['experience'].invalid && form['experience'].touched || form['experience'].dirty">
+            <span *ngIf="form['experience'].errors?.['required']">Experience is required</span>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="skills">Skills (comma separated):</label>
+          <input id="skills" formControlName="skills" type="text" class="form-control"/>
+          <span class="error-message" *ngIf="form['skills'].invalid && form['skills'].touched || form['skills'].dirty">
+            <span *ngIf="form['skills'].errors?.['required']">skills is required</span>
+          </span>
+        </div>
+        <!-- <div>
+          <label for="image">Image:</label>
+          <input type="file" id="image" formControlName="image" (change)="onFileChange($event)" />
+          <div *ngIf="form['image'].invalid && (form['image'].dirty || form['image'].touched)">
+            <small *ngIf="form['image'].errors?.['required']">Image is required.</small>
+          </div>
+        </div>
+
+        <div *ngIf="imagePreview">
+          <h3>Image Preview:</h3>
+          <img  [src]="imagePreview" alt="Image Preview" style="max-width: 200px;"/>
+        </div> -->
+
+        <button type="submit" class="btn-submit" [disabled]="portFolioForm.invalid">
+          {{ editMode ? 'Update' : 'Submit' }}
+        </button>
+        <button type="button" class="btn-cancel"  *ngIf="editMode" (click)="onEditCancel()">Cancel</button>
+      </form>
+    </div>
+
+
+  <div class="port-table">
+
+
+    <table class="table table-striped" *ngIf="profileDetails.length>0">
+	 <thead>
+		 <tr>
+			<th scope="col">No</th>
+			<th scope="col">Name</th>
+			<th scope="col">Edit</th>
+			<th scope="col">Delete</th>
+		 </tr>
+	 </thead>
+	 <tbody>
+		@for (profile of profileDetails; track profile.name; let i = $index) {
+			<tr>
+				<th scope="row">{{ i + 1 }}</th>
+				<td>
+					{{ profile.name }}
+				</td>
+        <td><i class="bi bi-pencil-square" (click)="onEdit(profile)"></i></td>
+        <td><i class="bi bi-trash3" (click)="deletePortFolioItem(profile.id)"></i></td>
+			</tr>
+		}
+	 </tbody>
+    </table>
+
+    </div>
+
+
+</div>

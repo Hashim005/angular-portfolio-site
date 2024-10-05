@@ -1,0 +1,19 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-card-footer {
+  padding: 16px;
+  color: black;
+
+}
+.example-card{
+  background-color: azure;
+}
+.message{
+  text-align: justify;
+    text-justify: inter-word;
+    margin: 0; /* Optional: Adjust the margins as needed */
+    padding: 0; /* Optional: Adjust the padding as needed */
+    line-height: 1.6;
+}

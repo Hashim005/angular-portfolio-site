@@ -1,0 +1,44 @@
+<div class="container">
+  <!-- Navigation Bar -->
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink routerLink="/home" routerLinkActive="active">
+        <i class="bi bi-house"></i> Home
+      </button>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink routerLink="/home/contact" routerLinkActive="active">
+        <i class="bi bi-envelope"></i> Contact
+      </button>
+    </li>
+    <li [ngbNavItem]="3">
+      <button ngbNavLink routerLink="/home/about" routerLinkActive="active">
+        <i class="bi bi-info-circle"></i>
+        About
+      </button>
+    </li>
+    <div class="admin">
+      <li [ngbNavItem]="4">
+        <button ngbNavLink routerLink="/login" routerLinkActive="active">
+          <i class="bi bi-person-circle"></i>
+          Admin Sign-In
+        </button>
+      </li>
+    </div>
+  </ul>
+
+  <!-- About Component Content -->
+  <h1>About Page</h1>
+
+  <div class="contact-page">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>About</mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngFor="let profile of profileDetails">
+        <p class="about"> {{ profile.about }} </p>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

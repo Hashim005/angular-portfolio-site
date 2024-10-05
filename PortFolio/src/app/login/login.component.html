@@ -1,0 +1,27 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <!-- form is {{ loginForm.valid }} -->
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div>
+      <label for="email">Email<span class="required">*</span>:</label>
+      <input id="email" formControlName="email"  />
+      <span class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <span *ngIf="loginForm.get('email')?.errors?.['required']">Email id is required</span>
+        <span *ngIf="loginForm.get('email')?.errors?.['pattern']">Invalid Email id!!</span>
+      </span>
+    </div>
+    <div>
+      <label for="password">Password <span class="required">*</span>:</label>
+      <input id="password" formControlName="password" />
+      <span  class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']">password is required</span>
+        <span *ngIf="loginForm.get('password')?.errors?.['minlength']"></span>
+      </span>
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <button class="home" (click)="cancel()">Back to Home</button>
+  </form>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>

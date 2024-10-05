@@ -1,0 +1,36 @@
+{
+  "user": [
+    {
+      "name": "hashim",
+      "email": "hashim@gmail.com",
+      "phone": "9961053455",
+      "password": "1234",
+      "role": "admin",
+      "id": 1
+    }
+  ],
+  "portfolioItems": [
+    {
+      "url": "assets/images/p2.png",
+      "name": "Muhammed Hashim M",
+      "jobTitle": " MEAN Stack Developer",
+      "about": "I am a passionate MEAN stack developer, specializing in creating full-stack applications using MongoDB, Express.js, Angular, and Node.js. In addition to my expertise in MEAN stack development, I am continuously expanding my skills by learning Python, Java, and further advancing my knowledge in Angular and MongoDB. My goal is to blend my technical skills with innovative solutions to deliver high-quality, scalable applications.",
+      "experience": "I have 3 years of experience as a MEAN stack developer.",
+      "skills": [
+        "JavaScript",
+        "Angular",
+        "TypeScript"
+      ],
+      "id": "1"
+    }
+  ],
+  "contacts": [
+    {
+      "name": "muhammed hashim m",
+      "email": "hashim@gmail.com",
+      "phone": "9961053444",
+      "message": "Feel free to reach out for any inquiries or collaboration opportunities. I'm available to discuss projects, answer questions, and provide further information. Let's connect!",
+      "id": "1"
+    }
+  ]
+}
